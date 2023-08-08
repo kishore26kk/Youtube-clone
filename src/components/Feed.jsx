@@ -12,7 +12,7 @@ const Feed = () => {
     const fetchData = async () =>{
       const response = await fetchFromAPI(`search?part=snippet&q=${selectedCategory}`);
       setVideos(response.items);
-    }
+    }   
     fetchData();
   },[selectedCategory])
 
