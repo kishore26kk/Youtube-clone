@@ -19,7 +19,7 @@ const VideoDetail = () => {
       const data2 = await fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`);
       setVideos(data2.items)
     }
-    fetchVideoDetail();
+    fetchVideoDetail(); 
   },[id])
   if(!videoDetail?.snippet) return 'Loading...'
 
