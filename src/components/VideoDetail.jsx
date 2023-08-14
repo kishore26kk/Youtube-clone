@@ -11,16 +11,21 @@ const VideoDetail = () => {
   const [videoDetail, setVideoDetail] = useState(null);
 
   const [videos, setVideos] = useState(null);
+ 
   const {id} = useParams();
+
   useEffect(()=>{
     const fetchVideoDetail = async() =>{
       const data1 = await fetchFromAPI(`videos?part=snippet,statistics&id=${id}`);
+      console.log(data1.items[0]);
       setVideoDetail(data1.items[0]);
       const data2 = await fetchFromAPI(`search?part=snippet&relatedToVideoId=${id}&type=video`);
       setVideos(data2.items)
+      console.log(data2.items);
     }
     fetchVideoDetail(); 
   },[id])
+
   if(!videoDetail?.snippet) return 'Loading...'
 
   const { snippet : {title, channelId, channelTitle }, statistics : {viewCount, likeCount}} = videoDetail;
@@ -54,7 +59,7 @@ const VideoDetail = () => {
         </Box>
       <Box px={2} py={{md:1, xs:5}} justifyContent="center" alignItems="center">
         <Videos videos={videos} direction="column" />
-      </Box>
+      </Box>7
       </Stack>  
     </Box>  
   )
